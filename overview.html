@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Overview • Outcome-Based Pricing</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Outcome-Based Pricing Calculator</h1>
+        <small>Sales-ready pricing + performance framing</small>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <button class="btn small" data-theme-toggle type="button" title="Toggle theme">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container fade-in">
+
+  <div class="footer-actions" style="margin-top:8px;">
+    <button class="btn" id="backBtn" type="button">← Back</button>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="btn" id="editBtn" type="button">Edit calculation</button>
+      <button class="btn primary" id="homeBtn" type="button">Back to Home</button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <h2 id="title">Overview</h2>
+    <p id="subtitle">Pitch-ready summary of key pricing + performance assumptions.</p>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h3>Executive summary</h3>
+      <p class="sub" id="summaryText">—</p>
+
+      <div class="kpi" style="margin-top:12px;">
+        <div class="pill">
+          <div class="label">Breakeven outcome price</div>
+          <div class="value" id="breakeven">—</div>
+          <div class="hint">Outcome-based price that matches per-minute spend.</div>
+        </div>
+        <div class="pill">
+          <div class="label">Efficiency required at client price</div>
+          <div class="value" id="effNeeded">—</div>
+          <div class="hint" id="effHint">AI vs Human needed (risk check).</div>
+        </div>
+        <div class="pill">
+          <div class="label">Connected calls</div>
+          <div class="value" id="connected">—</div>
+          <div class="hint">Volume used to compute spend and outcomes.</div>
+        </div>
+        <div class="pill">
+          <div class="label"><span id="outcomeKpiLabel">AI outcomes</span></div>
+          <div class="value" id="aiOutcomes">—</div>
+          <div class="hint"><span id="outcomeRateLabel">AI outcome rate</span>: <span id="aiRate">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>What to say in the pitch</h3>
+      <p class="sub">Copy-ready lines your team can use.</p>
+
+      <div class="step">
+        <div class="num">1</div>
+        <div class="txt" id="pitchLine1"><b>Breakeven anchor</b>—</div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="txt" id="pitchLine2"><b>Client price check</b>—</div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="txt" id="pitchLine3"><b>Time & cost story</b>—</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:16px;">
+    <div class="card">
+      <h3>Inputs (for reference)</h3>
+      <table class="table" aria-label="Inputs table">
+        <tbody id="inputsTable"></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Scenario snapshot</h3>
+      <p class="sub">Which model wins at different AI performance levels (relative to human).</p>
+      <table class="table" aria-label="Scenario snapshot">
+        <thead>
+          <tr>
+            <th>AI vs Human</th>
+            <th id="sRateHead">AI outcome rate</th>
+            <th id="sCountHead">AI outcomes</th>
+            <th>Outcome revenue</th>
+            <th>Per-minute revenue</th>
+            <th>Better</th>
+          </tr>
+        </thead>
+        <tbody id="scenarioMini"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+<script type="module" src="assets/js/page-overview.js"></script>
+</body>
+</html>

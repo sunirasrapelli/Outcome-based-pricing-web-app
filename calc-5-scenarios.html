@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculator • Scenario Exploration</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="#" id="homeLink" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Outcome-Based Pricing Calculator</h1>
+        <small>Step-by-step, sales-ready</small>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a class="link" href="#" id="savedLink">Saved</a>
+      <span id="dirtyBadge" class="badge warn" style="display:none;">Unsaved</span>
+      <button class="btn small" data-theme-toggle type="button" title="Toggle theme">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container fade-in">
+  <section class="wizard-head">
+    <div>
+      <div class="kicker" id="stepLabel">Step</div>
+      <h2 class="wizard-title" id="stepTitle">Scenario Exploration</h2>
+      <p class="purpose">Optional deep-dive: see how outcome-based vs per-minute revenue changes as AI performance improves.</p>
+    </div>
+    <div class="progress" aria-hidden="true"><div class="bar" id="stepBar"></div></div>
+  </section>
+
+  <section class="card wizard-card">
+    <h3>What if AI performs worse or better?</h3>
+    <p class="sub">Optional deep dive. We show which pricing model wins at different AI performance levels.</p>
+
+    <div class="callout" id="scenarioNote" style="display:none;">
+      Add a <b>client price</b> on the previous step to populate the outcome-based revenue column.
+    </div>
+
+    <div class="wizard-actions" style="justify-content:flex-start; gap:10px;">
+      <button class="btn" id="toggleScenario" type="button">Show table</button>
+      <span class="sub" style="margin:0;">Use this when the client asks “what if performance changes?”</span>
+    </div>
+
+    <div class="table-wrap" id="scenarioPanel">
+      <table class="table" aria-label="Scenario table">
+        <thead>
+          <tr>
+            <th>AI vs Human</th>
+            <th data-outcome-text="AI {outcome} rate">AI rate</th>
+            <th data-outcome-text="AI {outcome}">AI outcomes</th>
+            <th data-outcome-text="Outcome-based revenue (₹)">Outcome-based revenue</th>
+            <th>Per-minute revenue</th>
+            <th>Better model</th>
+          </tr>
+        </thead>
+        <tbody id="scenarioBody"></tbody>
+      </table>
+    </div>
+
+    <div class="wizard-actions">
+      <button class="btn" id="backBtn" type="button">Back</button>
+      <div class="right-actions">
+        <button class="btn" id="skipBtn" type="button">Skip</button>
+        <button class="btn primary" id="nextBtn" type="button">Next: Human vs AI (optional)</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Leave modal -->
+<div class="modal-backdrop" id="leaveModal">
+  <div class="modal">
+    <h3>Save before leaving?</h3>
+    <p class="sub">You have unsaved changes. If you leave, they may be lost.</p>
+    <div class="footer-actions">
+      <button class="btn" id="stayBtn" type="button">Stay</button>
+      <button class="btn primary" id="saveFromLeaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Save modal -->
+<div class="modal-backdrop" id="saveModal">
+  <div class="modal">
+    <h3>Save calculation</h3>
+    <p class="sub">Give this version a name your team will recognize.</p>
+    <div class="field">
+      <label>Calculation name</label>
+      <input id="saveName" type="text" data-autofocus>
+      <div class="err" id="saveNameErr"></div>
+    </div>
+    <div class="footer-actions">
+      <button class="btn" data-modal-close="saveModal" type="button">Cancel</button>
+      <button class="btn primary" id="confirmSaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="assets/js/page-step5.js"></script>
+</body>
+</html>

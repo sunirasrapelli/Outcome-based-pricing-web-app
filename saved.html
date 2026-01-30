@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Saved Calculations • Outcome-Based Pricing</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Outcome-Based Pricing Calculator</h1>
+        <small>Sales-ready pricing + performance framing</small>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <button class="btn small" data-theme-toggle type="button" title="Toggle theme">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container fade-in">
+  <div class="footer-actions" style="margin-top:8px;">
+    <button class="btn" id="backBtn" type="button">← Back</button>
+    <button class="btn primary" id="newBtn" type="button">Start new calculation</button>
+  </div>
+
+  <section class="hero">
+    <h2>Saved calculations</h2>
+    <p>All calculations are stored locally in your browser.</p>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h3>Your list</h3>
+      <span class="help" id="countLabel"></span>
+    </div>
+
+    <div id="emptyState" class="sub" style="display:none;">
+      No saved calculations yet. Create one to see it here.
+    </div>
+
+    <table class="table" aria-label="Saved calculations table" id="savedTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Breakeven price</th>
+          <th style="width:140px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="savedBody"></tbody>
+    </table>
+  </section>
+
+  <!-- Delete modal -->
+  <div class="modal-backdrop" id="deleteModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="delTitle">
+      <h3 id="delTitle">Delete calculation?</h3>
+      <p>This will remove the saved entry from this browser. This cannot be undone.</p>
+      <div class="row">
+        <button class="btn" data-modal-close="deleteModal" type="button">Cancel</button>
+        <button class="btn danger" id="confirmDeleteBtn" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+<script type="module" src="assets/js/page-saved.js"></script>
+</body>
+</html>

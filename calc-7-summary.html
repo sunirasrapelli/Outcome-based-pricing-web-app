@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculator • Summary & Save</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="#" id="homeLink" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Outcome-Based Pricing Calculator</h1>
+        <small>Step-by-step, sales-ready</small>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a class="link" href="#" id="savedLink">Saved</a>
+      <span id="dirtyBadge" class="badge warn" style="display:none;">Unsaved</span>
+      <button class="btn small" data-theme-toggle type="button" title="Toggle theme">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container fade-in">
+  <section class="wizard-head">
+    <div>
+      <div class="kicker" id="stepLabel">Step</div>
+      <h2 class="wizard-title" id="stepTitle">Summary & Save</h2>
+      <p class="purpose">A sales-ready takeaway you can read out loud—then save this scenario for later.</p>
+    </div>
+    <div class="progress" aria-hidden="true"><div class="bar" id="stepBar"></div></div>
+  </section>
+
+  <section class="card wizard-card">
+    <h3>Executive takeaway</h3>
+    <p class="sub">Use this section as your “talk track” during pricing discussions.</p>
+
+    <div class="kpi-row">
+      <div class="kpi big">
+        <div class="k" data-outcome-text="Breakeven price (₹ / {outcome})">Breakeven price</div>
+        <div class="v mono" id="breakevenPrice">—</div>
+        <div class="s" data-outcome-text="Per {outcome}">Per outcome</div>
+      </div>
+      <div class="kpi">
+        <div class="k">Per-minute spend</div>
+        <div class="v mono" id="aiSpend">—</div>
+        <div class="s">For the program</div>
+      </div>
+      <div class="kpi">
+        <div class="k" data-outcome-text="AI {outcome}">AI outcomes</div>
+        <div class="v mono" id="aiOutcomes">—</div>
+        <div class="s" data-outcome-text="Outcome: {outcome}">Outcome</div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="summary-list">
+      <div class="summary-item" id="summary1">—</div>
+      <div class="summary-item" id="summary2">—</div>
+      <div class="summary-item" id="summary3">—</div>
+      <div class="summary-item" id="optionalLineWrap" style="display:none;"><span id="optionalLine"></span></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="mini-grid">
+      <div class="mini">
+        <div>Efficiency required</div>
+        <div class="mono" id="effNeeded">—</div>
+      </div>
+      <div class="mini">
+        <div>Risk check</div>
+        <div class="mono" id="riskLabel">—</div>
+      </div>
+      <div class="mini">
+        <div data-outcome-text="Outcome">Outcome</div>
+        <div class="mono" id="outcomeLbl">—</div>
+      </div>
+    </div>
+
+    <div class="wizard-actions">
+      <button class="btn" id="backBtn" type="button">Back</button>
+      <div class="right-actions">
+        <button class="btn" id="saveBtn" type="button">Save</button>
+        <button class="btn primary" id="viewOverviewBtn" type="button" disabled>View overview</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Leave modal -->
+<div class="modal-backdrop" id="leaveModal">
+  <div class="modal">
+    <h3>Save before leaving?</h3>
+    <p class="sub">You have unsaved changes. If you leave, they may be lost.</p>
+    <div class="footer-actions">
+      <button class="btn" id="stayBtn" type="button">Stay</button>
+      <button class="btn primary" id="saveFromLeaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Save modal -->
+<div class="modal-backdrop" id="saveModal">
+  <div class="modal">
+    <h3>Save calculation</h3>
+    <p class="sub">Give this version a name your team will recognize.</p>
+    <div class="field">
+      <label>Calculation name</label>
+      <input id="saveName" type="text" data-autofocus>
+      <div class="err" id="saveNameErr"></div>
+    </div>
+    <div class="footer-actions">
+      <button class="btn" data-modal-close="saveModal" type="button">Cancel</button>
+      <button class="btn primary" id="confirmSaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="assets/js/page-step7.js"></script>
+</body>
+</html>

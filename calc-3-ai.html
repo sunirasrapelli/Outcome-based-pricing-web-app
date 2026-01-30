@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculator • AI Assumptions</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="#" id="homeLink" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Outcome-Based Pricing Calculator</h1>
+        <small>Step-by-step, sales-ready</small>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a class="link" href="#" id="savedLink">Saved</a>
+      <span id="dirtyBadge" class="badge warn" style="display:none;">Unsaved</span>
+      <button class="btn small" data-theme-toggle type="button" title="Toggle theme">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container fade-in">
+  <section class="wizard-head">
+    <div>
+      <div class="kicker" id="stepLabel">Step</div>
+      <h2 class="wizard-title" id="stepTitle">AI Assumptions</h2>
+      <p class="purpose">Add AI assumptions one at a time. We’ll translate them into expected outcomes and per-minute spend.</p>
+    </div>
+    <div class="progress" aria-hidden="true"><div class="bar" id="stepBar"></div></div>
+  </section>
+
+  <section class="card wizard-card">
+    <h3>Introduce AI carefully</h3>
+    <p class="sub">Set AI performance relative to the human baseline. We’ll show a simple side-by-side view (no pricing conclusions yet).</p>
+
+    <div class="split">
+      <div>
+        <div class="form-grid">
+          <div class="field" data-field="aiVsHuman">
+            <label data-outcome-text="AI vs Human ({outcome} rate) (%)">AI vs Human (%)</label>
+            <input id="aiVsHumanPct" type="number" min="0" step="0.1" placeholder="e.g., 120">
+            <div class="hint" data-outcome-text="If human {outcome} rate is 1%, 120% means AI is 1.2%.">If human rate is 1%, 120% means AI is 1.2%.</div>
+            <div class="err"></div>
+          </div>
+          <div class="field" data-field="ahtMins">
+            <label>Avg handle time (mins)</label>
+            <input id="ahtMins" type="number" min="0" step="0.1" placeholder="e.g., 2">
+            <div class="hint">Average talk time per connected call.</div>
+            <div class="err"></div>
+          </div>
+          <div class="field" data-field="aiPricePerMin">
+            <label>AI price per minute (₹)</label>
+            <input id="aiPricePerMin" type="number" min="0" step="0.01" placeholder="e.g., 2.5">
+            <div class="hint">Your per-minute pricing anchor.</div>
+            <div class="err"></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="insight">
+          <div class="effect-note">Based on the above →</div>
+          <h4>Human vs AI (simple)</h4>
+          <div class="kpi-row">
+            <div class="kpi">
+              <div class="k">Connected calls</div>
+              <div class="v mono" id="connectedOut">—</div>
+              <div class="s">Same baseline</div>
+            </div>
+            <div class="kpi">
+              <div class="k" data-outcome-text="Human {outcome}">Human outcomes</div>
+              <div class="v mono" id="humanOutOut">—</div>
+              <div class="s mono" id="humanRateOut">—</div>
+            </div>
+            <div class="kpi">
+              <div class="k" data-outcome-text="AI {outcome}">AI outcomes</div>
+              <div class="v mono" id="aiOutOut">—</div>
+              <div class="s mono" id="aiRateOut">—</div>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="mini">
+            <div>Per-minute spend preview</div>
+            <div class="mono" id="aiSpendPreview">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-actions">
+      <button class="btn" id="backBtn" type="button">Back</button>
+      <button class="btn primary" id="nextBtn" type="button">Next: Pricing & breakeven</button>
+    </div>
+  </section>
+</main>
+
+<!-- Leave modal -->
+<div class="modal-backdrop" id="leaveModal">
+  <div class="modal">
+    <h3>Save before leaving?</h3>
+    <p class="sub">You have unsaved changes. If you leave, they may be lost.</p>
+    <div class="footer-actions">
+      <button class="btn" id="stayBtn" type="button">Stay</button>
+      <button class="btn primary" id="saveFromLeaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Save modal -->
+<div class="modal-backdrop" id="saveModal">
+  <div class="modal">
+    <h3>Save calculation</h3>
+    <p class="sub">Give this version a name your team will recognize.</p>
+    <div class="field">
+      <label>Calculation name</label>
+      <input id="saveName" type="text" data-autofocus>
+      <div class="err" id="saveNameErr"></div>
+    </div>
+    <div class="footer-actions">
+      <button class="btn" data-modal-close="saveModal" type="button">Cancel</button>
+      <button class="btn primary" id="confirmSaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="assets/js/page-step3.js"></script>
+</body>
+</html>

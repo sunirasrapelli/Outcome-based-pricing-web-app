@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calculator • Pricing & Breakeven</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="#" id="homeLink" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Outcome-Based Pricing Calculator</h1>
+        <small>Step-by-step, sales-ready</small>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a class="link" href="#" id="savedLink">Saved</a>
+      <span id="dirtyBadge" class="badge warn" style="display:none;">Unsaved</span>
+      <button class="btn small" data-theme-toggle type="button" title="Toggle theme">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container fade-in">
+  <section class="wizard-head">
+    <div>
+      <div class="kicker" id="stepLabel">Step</div>
+      <h2 class="wizard-title" id="stepTitle">Pricing & Breakeven</h2>
+      <p class="purpose">See the breakeven ₹ per outcome and test any client-proposed price before you pitch.</p>
+    </div>
+    <div class="progress" aria-hidden="true"><div class="bar" id="stepBar"></div></div>
+  </section>
+
+  <section class="card wizard-card">
+    <h3>The decisive moment</h3>
+    <p class="sub">This is the pitch-ready view: a breakeven outcome price, plus what performance is needed if the client proposes a price.</p>
+
+    <div class="kpi-row">
+      <div class="kpi big">
+        <div class="k" data-outcome-text="Breakeven price (₹ / {outcome})">Breakeven price</div>
+        <div class="v mono" id="breakevenPrice">—</div>
+        <div class="s">Anchor for outcome-based pricing</div>
+      </div>
+      <div class="kpi">
+        <div class="k">Per-minute spend (₹)</div>
+        <div class="v mono" id="aiSpend">—</div>
+        <div class="s">Based on connected calls × AHT × price/min</div>
+      </div>
+      <div class="kpi">
+        <div class="k" data-outcome-text="AI {outcome} (#)">AI outcomes</div>
+        <div class="v mono" id="aiOutcomes">—</div>
+        <div class="s">From your AI vs human assumption</div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="split">
+      <div>
+        <h4 style="margin:0 0 10px;">If the client proposes a price…</h4>
+        <div class="form-grid">
+          <div class="field" data-field="proposedOutcomePrice">
+            <label data-outcome-text="Client price (₹ / {outcome})">Client price (₹ / outcome)</label>
+            <input id="proposedOutcomePrice" type="number" min="0" step="0.01" placeholder="e.g., 50">
+            <div class="hint">Optional. Fill this to see what AI performance is needed at that price.</div>
+            <div class="err"></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="insight">
+          <div class="effect-note">If a client gives a price →</div>
+          <h4>Reverse breakeven</h4>
+          <div class="mini-grid">
+            <div class="mini">
+              <div data-outcome-text="AI {outcome} rate needed">AI rate needed</div>
+              <div class="mono" id="aiRateNeeded">—</div>
+            </div>
+            <div class="mini">
+              <div>AI vs Human needed</div>
+              <div class="mono" id="aiVsHumanNeeded">—</div>
+            </div>
+            <div class="mini">
+              <div>Risk check</div>
+              <div class="mono" id="riskLabel">—</div>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="pill" id="riskPill">Tip: If AI vs Human needed is above 100%, it’s a tougher bet for outcome-based pricing.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-actions">
+      <button class="btn" id="backBtn" type="button">Back</button>
+      <div class="right-actions">
+        <button class="btn" id="skipBtn" type="button">Skip deep-dive</button>
+        <button class="btn primary" id="nextBtn" type="button">Next: Scenario exploration</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Leave modal -->
+<div class="modal-backdrop" id="leaveModal">
+  <div class="modal">
+    <h3>Save before leaving?</h3>
+    <p class="sub">You have unsaved changes. If you leave, they may be lost.</p>
+    <div class="footer-actions">
+      <button class="btn" id="stayBtn" type="button">Stay</button>
+      <button class="btn primary" id="saveFromLeaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Save modal -->
+<div class="modal-backdrop" id="saveModal">
+  <div class="modal">
+    <h3>Save calculation</h3>
+    <p class="sub">Give this version a name your team will recognize.</p>
+    <div class="field">
+      <label>Calculation name</label>
+      <input id="saveName" type="text" data-autofocus>
+      <div class="err" id="saveNameErr"></div>
+    </div>
+    <div class="footer-actions">
+      <button class="btn" data-modal-close="saveModal" type="button">Cancel</button>
+      <button class="btn primary" id="confirmSaveBtn" type="button">Save</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="assets/js/page-step4.js"></script>
+</body>
+</html>

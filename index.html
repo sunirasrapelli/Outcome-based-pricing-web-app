@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Outcome-Based Pricing Calculator</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html" aria-label="Go to Home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Outcome-Based Pricing Calculator</h1>
+        <small>Sales-ready pricing + performance framing</small>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <button class="btn small" data-theme-toggle type="button" title="Toggle theme">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        Theme
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container fade-in">
+  <section class="hero">
+    <h2>Price outcomes with confidence.</h2>
+    <p>
+      This calculator helps sales teams pitch outcome-based pricing for AI voice calling:
+      estimate a <b>breakeven outcome price</b>, and show the <b>AI performance needed</b> if a client proposes a price.
+    </p>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="section-title">
+        <h3>How it works</h3>
+      </div>
+      <div class="step">
+        <div class="num">1</div>
+        <div class="txt"><b>Choose your input style</b>Use percentages if you only know rates. Use absolute counts if you already know volumes.</div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="txt"><b>Pick what “outcome” means</b>Lead registration, qualification, KYC, policy issued—whatever the client cares about.</div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="txt"><b>Compare AI vs humans</b>Set AI productivity as a % of the human outcome rate and see breakeven + risk.</div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div class="txt"><b>Get a pitch-ready view</b>Breakeven price + scenario table to show which model wins at different AI performance levels.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Get started</h3>
+      <p class="sub">Everything runs locally in your browser. Save calculations for later.</p>
+      <div class="footer-actions">
+        <button class="btn primary" id="startBtn" type="button">Start new calculation</button>
+        <button class="btn" id="savedBtn" type="button">View saved calculations</button>
+      </div>
+      <div class="hr"></div>
+      <p class="sub">
+        Tip: You can create multiple versions (e.g., “Bank - Credit Card Upsell”, “NBFC - Loan KYC”) and compare outcomes.
+      </p>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/page-home.js"></script>
+</body>
+</html>
